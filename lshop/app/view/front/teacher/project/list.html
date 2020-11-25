@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="互联网+创新创业教育中心隶属于泉州信息工程学院软件学院，该中心包括多名的教授和引进的高水平技术人员">
+  <meta name="keywords" content="泉州 泉州信息工程学院 软件学院 互联网+创新创业教育中心,用户中心">
+  <title>项目管理</title>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <link href="/public/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" media="screen">
+  <link href="/public/plugins/layer/theme/default/layer.css" rel="stylesheet" media="screen">
+
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+      <div class="container">
+        <a href="/" class="navbar-brand">
+          <img src="/public/dist/img/logo.png" alt="软件学院双创教育中心" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+          <span class="brand-text font-weight-light">创新创业教育中心</span>
+        </a>
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="fas fa-comments"></i>
+              <span class="badge badge-danger navbar-badge">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">Call me whenever you can...</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">I got your message bro</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">The subject goes here</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              {{teacher.teacher_name}} <i class="fa fa-user-circle-o mr-3"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-mini dropdown-menu-right">
+              <a href="/" class="dropdown-item">
+                <i class="fa fa-home mr-2"></i> 首页
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fa fa-cog mr-2"></i> 用户设置
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fa fa-eercast mr-2"></i> 用户退出
+              </a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+    <!-- /.navbar -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+      <div class="container d-flex flex-row p-2 ">
+        <div class="menu" style="width: 150px; min-height: 300px;">
+          <div class="my d-flex flex-column align-items-center bg-light mb-2">
+            <img src="/public/images/cat.jpg" width="100" height="100" alt="my" class="rounded-circle">
+            <div class="my-name mb-1 mt-1">{{teacher.teacher_name}}</div>
+            <a href="/home/teacher/config" class="btn btn-warning btn-sm mb-2">账号管理</a>
+          </div>
+          <ul class="list-group menu-item">
+            <li class="list-group-item active"><a href="/home/teacher/project" class="text-light">我的项目 </a></li>
+            <li class="list-group-item">我的社团</li>
+            <li class="list-group-item">我的工作室</li>
+            <li class="list-group-item"><a href="/home/teacher/article">读书笔记</a></li>
+
+          </ul>
+        </div>
+        <div class="content flex-grow-1 ml-2">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/home/teacher/center">教师中心</a></li>
+              <li class="breadcrumb-item active" aria-current="page">我的项目</li>
+            </ol>
+          </nav>
+          <div class="mb-2" style="text-align: right;">
+            <a href="/home/teacher/project/create" class="btn btn-sm btn-info">创建项目</a>
+          </div>
+          {% for project in projects %}
+          <div class="card">
+            <div class="card-header bg-info">
+              {{project.project_name}}
+              <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                <button type="button" class="btn btn-sm btn-light" data-id="{{project.id}}"
+                  onclick="addTeachers(this)">添加教师</button>
+                <button type="button" class="btn btn-sm btn-light" data-id="{{project.id}}" onclick="enroll(this)">
+                  {%  if project.enroll==0 %}
+                  开启报名
+                  {% else %}
+                  关闭报名
+                  {% endif %}
+                </button>
+                <button type="button" data-id="{{project.id}}" class="btn btn-sm btn-light"
+                  onclick="projectCreate(this)">设置</button>
+                <select id="status" data-id="{{project.id}}" onchange="changeStatus(this)">
+                  {% for status in statuses %}
+                  {% if status.id==project.status %}
+                  <option value="{{status.id}}" selected>{{status.name}}</option>
+                  {% else %}
+                  <option value="{{status.id}}">{{status.name}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="card-body p-1">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">指导教师:
+                  {% if project_teachers %}
+                  {% for pt in project_teachers  %}
+                  {% if pt.id==project.id %}
+                  {% for teacher in pt.teachers  %}
+                  <span>{{teacher.teacher_name}}</span>
+                  {% endfor %}
+                  <span class="float-right">报名人数：<em>已报名：</em>{{pt.count}}/{{project.teacher_max}}</span>
+                  {% endif  %}
+                  {% endfor %}
+
+                  {% else %}
+                  <span class="bg-danger">还没有教师加入</span>
+                  {% endif %}
+                </li>
+                <li class="list-group-item">项目成员:
+                  {% if project_students  %}
+                  {% for ps in project_students  %}
+                  {% if ps.id==project.id %}
+                  {% for student in ps.students  %}
+                  <span>{{student.student_name}}</span>
+                  {% endfor %}
+                  <span class="float-right">报名人数：<em>已报名：</em>{{ps.count}}/{{project.student_max}}</span>
+                  {% endif  %}
+                  {% endfor %}
+                  {% else %}
+                  <span class="bg-danger">还没有学生加入</span>
+                  {% endif %}
+                </li>
+                <li class="list-group-item">
+                  <em class="mr-1">项目周期:<span class="text-info">{{project.project_period}}</span> </em>
+                  <em class="mr-1">启动时间:<span class="text-info">{{project.start_time}}</span> </em>
+                  <em class="mr-1">项目类型:<span class="text-info">{{project.project_type}}</span> </em>
+                </li>
+
+              </ul>
+            </div>
+            <div class="card-footer text-muted">
+              <em class="mr-1">负责人:<span class="text-info">{{project.leader_name}}</span> </em>
+              <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                <button type="button" class="btn btn-sm btn-light" data-id="{{project.id}}"
+                  onclick="addStudents(this)">添加学生</button>
+               
+                <button type="button" class="btn btn-sm btn-light"  data-id="{{project.id}}"
+                  onclick="projectRate(this)">进度管理</button>
+                <div class="bg-info rounded-pill"
+                  style="display: inline-block;width: 50px;height: 30px; line-height: 30px;text-align: center;" >
+                  <span id="rate{{project.id}}">{{project.project_rate}}</span>%</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="float-right d-none d-sm-inline">
+        态度决定一切，代码改变生活
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2020-2030 <a href="https://qzimp.cn">泉州信息工程学院软件学院互联网+社团</a>.</strong> All rights
+      reserved.
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+  <div id="layer" style="display: none;">
+    layer
+  </div>
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/public/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/public/dist/js/adminlte.min.js"></script>
+
+  <script src="/public/plugins/wangEditor3.1.1/wangEditor.min.js"></script>
+  <script type="text/javascript" src="/public/plugins/jquery-ui/jquery-ui.min.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/public/plugins/layer/layer.js" charset="UTF-8"></script>
+
+
+  <script>
+    //wangEditor
+    var E = window.wangEditor
+    var editor = new E('#div1')
+    editor.customConfig.menus = [
+      'head', // 标题
+      'bold', // 粗体
+      'fontSize', // 字号
+      'fontName', // 字体
+      'link', // 插入链接
+      'list',
+      'justify', // 对齐方式
+      'image', // 插入图片
+      'table', // 表格
+      'code', // 插入代码
+    ]
+    //editor.customConfig.uploadImgShowBase64 = true
+    editor.customConfig.uploadImgServer = '/admin/wang/upload'
+    var $text1 = $('#project_desc')
+    editor.customConfig.onchange = function (html) {
+      // 监控变化，同步更新到 textarea
+      //html="{{depart.depart_desc}}";
+      $text1.val(html)
+    }
+
+    editor.create()
+    // 初始化 textarea 的值
+    var content = "{{project.project_desc}}";
+    var s = Escapehtml(content);
+    //console.log(content)
+    editor.txt.html(s);
+
+    function Escapehtml(sHtml) {
+      var s = "";
+      if (sHtml.length == 0) {
+        return ""
+      };
+      s = sHtml.replace(/&lt;/g, '<');
+      s = s.replace(/&gt;/g, '>');
+      s = s.replace(/&quot;/g, '"');
+      s = s.replace(/&nbsp;/g, '');
+      return s;
+    }
+
+    //wangEditor end 
+    //datepicker
+    $(function () {
+      $("#start_time").datepicker();
+    });
+
+    function addTeachers(e) {
+      let id = $(e).attr('data-id');
+      window.location.href = "/home/teacher/toselectteachers?projectId=" + id
+    }
+    function addStudents(e) {
+      let id = $(e).attr('data-id');
+      window.location.href = "/home/student/toselectstudents?projectId=" + id
+    }
+    //启动报名|取消报名
+    function enroll(e) {
+      let id = $(e).attr('data-id');
+      let params = {};
+      params.id = id;
+      let body = {};
+      body.id = id;
+      if ($(e).text().trim() === '开启报名') {
+        $(e).text("关闭报名")
+        body.enroll = 1;
+        params.body = body;
+        $.post('/home/teacher/project/update', params, function (res) {
+          if (res.code == 1) {
+            alert(res.msg)
+          } else {
+            alert(res.msg)
+            return;
+          }
+        })
+
+      } else {
+        $(e).text("开启报名")
+        body.enroll = 0;
+        params.body = body;
+        $.post('/home/teacher/project/update', params, function (res) {
+          if (res.code == 1) {
+            alert(res.msg)
+          } else {
+            alert(res.msg)
+            return;
+          }
+        })
+      }
+      // console.log($(e).text())
+      return;
+    }
+
+    function changeStatus(e) {
+      let id = $(e).attr('data-id');
+      let status = $(e).val();
+
+      let params = {};
+      params.id = id;
+      let body = {};
+      body.id = id;
+      body.status = status;
+      params.body = body;
+      $.post('/home/teacher/project/update', params, function (res) {
+
+        if (res.code == 1) {
+          alert(res.msg)
+        } else {
+          alert(res.msg)
+          return;
+        }
+      })
+      return;
+    }
+
+    function projectCreate(e) {
+      let id = $(e).attr('data-id');
+      window.location.href = "/home/teacher/project/create?id=" + id;
+    }
+
+    function projectDetail(e) {
+      let id = $(e).attr('data-id');
+      window.location.href = "/home/teacher/project/detail?id=" + id;
+    }
+
+    function projectRate(e) {
+      let id = $(e).attr('data-id');
+      layer.open({
+        type: 1,
+        title: '输入完成进度',
+        btn: ['确认', '取消'],
+        maxmin: true,
+        area: ['300px', '150px'],
+        content: "<input class='project-rate form-control mt-2' type='number'>", //这里content是一个普通的String
+        yes: function (index) {
+ 
+          let rate = $('.project-rate')[0].value;
+          if (rate == '') {
+            alert('请输入1到100的值');
+            return;
+          }
+          if (rate > 100) {
+            alert('输入的值不能超过100');
+            return;
+          }
+          //ajax
+          let params = {};
+          params.id = id;
+          let body = {};
+          body.id = id;
+          body.project_rate = rate;
+          params.body = body;
+          $.post('/home/teacher/project/update', params, function (res) {
+            if (res.code == 1) {
+              let el="#rate"+id;
+              $(el).text(rate)
+              alert("进度修改成功");
+              layer.close(index);
+
+            } else {
+              alert('进度修改失败');
+              return;
+            }
+          })
+          return;
+        },
+        btn2: function (index) {
+          layer.close(index);
+        }
+
+      });
+
+    }
+  </script>
+</body>
+
+</html>

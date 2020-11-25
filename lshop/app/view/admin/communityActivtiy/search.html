@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动搜索</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form class="row" action="/admin/communityactivity/search" method="POST">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">必定有值</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">活动名</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{communityActivtiy.title}}" placeholder="输入活动名称">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="communityActivtiy_type">活动类型</label>
+                            <select class="form-control" name="type" id="status">
+                                {% for typeitem in  typeitems %}
+                                {% if typeitem==communityActivtiy.type %}
+                                <option value="{{typeitem}}" selected>{{typeitem}}</option>
+                                {% else %}
+                                <option value="{{typeitem}}">{{typeitem}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="communityActivtiy_period">活动开始时间区间</label>
+                            <!-- <input type="number" min="0" style="margin-right: 8px;" class="form-control" id="starttime" name="starttime" value="{{communityActivtiy.starttime}}" placeholder="输入竞赛时间"> -->
+                            <div>
+                                <div style="display: flex;justify-content:space-around;">
+                                    <input type="date" style="width: 26%;" class="form-control" name="starttime.beginDate" />
+                                    <input type="time" style="width: 20%;" class="form-control" name="starttime.begintime" />
+                                    <p style="margin: 3px;">到</p>
+                                    <input type="date" style=" width: 26%;" class="form-control" name="starttime.endDate" />
+                                    <input type="time" style=" width: 20%;" class="form-control" name="starttime.endTime" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="competition_org">主办社团</label>
+                            <input type="text" class="form-control" id="c_id" name="c_id" value="{{communityActivtiy.c_id	}}" placeholder="输入主办社团，多个社团以逗号隔开">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">可能为空</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <input type="hidden" name="id" value="{{communityActivtiy.id}}">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="status">状态</label>
+                                <select class="form-control" name="status" id="status">
+                                    <!-- 疑问 -->
+                                    
+                                    
+                                    <option value=-1>不选择</option>
+                                    
+                                    {% for type in  statusitems %}
+                                    <option value="{{type.id}}">{{type.name}}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="chager">活动负责人</label>
+                            <input type="text" class="form-control" id="chager" name="chager" value="{{communityActivtiy.chager}}" placeholder="输入负责人名称" />
+                        </div>
+                        <div class="form-group">
+                            <label for="communityActivtiy_period">活动结束时间区间</label>
+                            <!-- <input type="number" min="0" style="margin-right: 8px;" class="form-control" id="endtime" name="endtime" value="{{communityActivtiy.endtime}}" placeholder="输入结束时间" /> -->
+                            <div style="display: flex;justify-content:space-around;">
+                                <input type="date" style="width: 26%;" class="form-control" name="endtime.beginDate" />
+                                <input type="time" style="width: 20%;" class="form-control" name="endtime.beginTime" />
+                                <p style="margin: 3px;">到</p>
+                                <input type="date" style=" width: 26%;" class="form-control" name="endtime.endDate" />
+                                <input type="time" style=" width: 20%;" class="form-control" name="endtime.endTime" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block">搜索</button>
+            </div>
+        </form>
+        <!-- /.row -->
+    </div>
+    <!-- ChartJS -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- jQuery -->
+    <script src="/public/plugins/jquery/jquery.min.js"></script>
+    <script>
+        $('form').submit(function(e) {
+            console.log("提交");
+
+            const beginTimeOne = new Date($('input[name="starttime.beginDate"]').val() + ' ' + $('input[name="starttime.begintime"]').val()).valueOf() / 1000;
+            const beginTimeTwo = new Date($('input[name="starttime.endDate"]').val() + ' ' + $('input[name="starttime.endTime"]').val()).valueOf() / 1000;
+
+            const endtimeOne = new Date($('input[name="endtime.beginDate"]').val() + ' ' + $('input[name="endtime.beginTime"]').val()).valueOf() / 1000;
+            const endtimeTwo = new Date($('input[name="endtime.endDate"]').val() + ' ' + $('input[name="endtime.endTime"]').val()).valueOf() / 1000;
+
+            // console.log("beginTimeOne", beginTimeOne);
+            // console.log("beginTimeTwo", beginTimeTwo);
+            // console.log("endtimeOne", endtimeOne);
+            // console.log("endtimeTwo", endtimeTwo);
+            // console.log($(this).serializeArray());
+
+            if (beginTimeTwo > 0 || beginTimeOne > 0) {
+                console.log("111");
+                if (!isNaN($('input[name="starttime.begintime"]').val()).valueOf()) {
+                    alert("开始时间的搜索区间请输入完整");
+                    return false;
+                }
+                if (!isNaN($('input[name="starttime.endTime"]').val()).valueOf()) {
+                    alert("开始时间的搜索区间请输入完整");
+                    return false;
+                }
+
+                if (beginTimeOne >= beginTimeTwo || isNaN(beginTimeOne)) {
+                    alert("开始时间的搜索区间有误");
+                    return false;
+                }
+            }
+            if (endtimeOne > 0 || endtimeTwo > 0) {
+                console.log("111");
+                if (!isNaN($('input[name="endtime.beginTime"]').val()).valueOf()) {
+                    alert("结束时间的搜索区间请输入完整");
+                    return false;
+                }
+                if (!isNaN($('input[name="endtime.endTime"]').val()).valueOf()) {
+                    alert("结束时间的搜索区间请输入完整");
+                    return false;
+                }
+
+                if (endtimeOne >= endtimeTwo || isNaN(endtimeOne)) {
+                    alert("结束时间的搜索区间有误");
+                    return false;
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

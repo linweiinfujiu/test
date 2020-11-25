@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>教师编辑</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/teacher/edit" method="POST">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="teacher_name">教师姓名</label>
+              <input type="text" class="form-control" id="teacher_name" name="teacher_name"
+                value="{{teacher.teacher_name}}" placeholder="输入教师姓名" required>
+            </div>
+            <div class="form-group">
+              <label for="teacher_no">工号</label>
+              <input type="text" class="form-control" id="teacher_no" name="teacher_no" value="{{teacher.teacher_no}}"
+                placeholder="输入工号" required>
+            </div>
+            <div class="form-group">
+                <label for="email">电子邮箱</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{teacher.email}}"
+                  placeholder="输入电子邮件"  required>
+            </div>
+            <div class="form-group">
+                <label for="telephone">移动电话</label>
+                <input type="tel" class="form-control" id="telephone" name="telephone" value="{{teacher.telephone}}"
+                  placeholder="输入移动电话"  required>
+              </div>
+            <div class="form-group">
+              <label for="cat_id">部门</label>
+              <select class="form-control" name="depart_id" id="depart_id" required>
+                <option value="-1">请选择部门</option>
+                {% for depart in departs %}
+                {% if teacher.depart_id==depart.id%}
+                <option value="{{depart.id}}" selected>{{depart.depart_name}}</option>
+                {% else %}
+                <option value="{{depart.id}}">{{depart.depart_name}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="status">教师状态</label>
+              <!-- 在校、离校、退休、返聘、其他-->
+              <select class="form-control" name="status" id="status">
+                 {% for status in statuses %}
+                    <option value="{{status.id}}">{{status.name}}</option>
+                 {% endfor %}
+              </select>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="id" value="{{teacher.id}}">
+            <div class="form-group">
+                <label for="status">教师职称</label>
+                
+                <select class="form-control" name="professional" id="professional">
+                    <option value="">请选择职称</option>   
+                  {% for p in professionals%}
+                      {% if teacher.professional ==p %}
+                      <option value="{{p}}" selected >{{p}}</option>
+                      {% else %}
+                      <option value="{{p}}">{{p}}</option>
+                      
+                      {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="weixin">入职时间</label>
+                <input type="text" class="form-control" id="in_school" name="in_school" value="{{teacher.in_school}}"
+                  placeholder="输入入职时间" >
+              </div>
+            <div class="form-group">
+              <label for="weixin">微信号</label>
+              <input type="text" class="form-control" id="weixin" name="weixin" value="{{teacher.weixin}}"
+                placeholder="输入微信号" >
+            </div>
+            <div class="form-group">
+              <label for="qq">qq</label>
+              <input type="text" class="form-control" id="qq" name="qq" value="{{teacher.qq}}"
+                placeholder="输入qq号" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+
+</body>
+
+</html>

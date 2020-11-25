@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="互联网+创新创业教育中心隶属于泉州信息工程学院软件学院，该中心包括多名的教授和引进的高水平技术人员">
+  <meta name="keywords" content="泉州 泉州信息工程学院 软件学院 互联网+创新创业教育中心,用户中心">
+  <title>文章编辑</title>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <link href="/public/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" media="screen">
+  <link href="/public/plugins/layer/theme/default/layer.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/public/plugins/dropzone-5.7.0/dist/min/dropzone.min.css">
+
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+      <div class="container">
+        <a href="/" class="navbar-brand">
+          <img src="/public/dist/img/logo.png" alt="软件学院双创教育中心" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+          <span class="brand-text font-weight-light">创新创业教育中心</span>
+        </a>
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="fas fa-comments"></i>
+              <span class="badge badge-danger navbar-badge">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">Call me whenever you can...</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">I got your message bro</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="/public/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">The subject goes here</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              {{teacher.teacher_name}} <i class="fa fa-user-circle-o mr-3"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-mini dropdown-menu-right">
+              <a href="/" class="dropdown-item">
+                <i class="fa fa-home mr-2"></i> 首页
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/home/teacher/config" class="dropdown-item">
+                <i class="fa fa-cog mr-2"></i> 用户设置
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/home/user/loginout" class="dropdown-item">
+                <i class="fa fa-eercast mr-2"></i> 用户退出
+              </a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+    <!-- /.navbar -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+      <div class="container d-flex flex-row p-2 ">
+        <div class="menu" style="width: 150px; min-height: 300px;">
+          <div class="my d-flex flex-column align-items-center bg-light mb-2">
+            <img src="/public/images/cat.jpg" width="100" height="100" alt="my" class="rounded-circle">
+            <div class="my-name mb-1 mt-1">{{teacher.teacher_name}}</div>
+            <a href="/home/teacher/config" class="btn btn-warning btn-sm mb-2">账号管理</a>
+          </div>
+          <ul class="list-group menu-item">
+            <li class="list-group-item active"><a href="/home/teacher/project" class="text-light">我的项目 </a></li>
+            <li class="list-group-item">我的社团</li>
+            <li class="list-group-item">我的工作室</li>
+            <li class="list-group-item"><a href="/home/teacher/project">读书笔记</a></li>
+          </ul>
+        </div>
+        <div class="content flex-grow-1 ml-2">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/home/teacher/center">教师中心</a></li>
+              <li class="breadcrumb-item active" aria-current="page">文章创建</li>
+            </ol>
+          </nav>
+          <form role="form" method="POST" action="/home/teacher/article/create">
+            <div class="card-body">
+              <div class="form-group">
+                <input type="hidden" name="article_id" value="{{article.id}}">
+                <label for="title">文章标题</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="输入文章标题"
+                  value="{{article.title}}" required>
+              </div>
+
+              <div class="form-group">
+                <label for="cat_id">文章分类</label>
+                <select name="cat_id" id="cat_id" class="form-control" required>
+                  {% for cat in articlecates %}
+                  <option value="{{cat.cat_id}}">{{cat.cat_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="description">文章简介</label>
+                <textarea name="description" id="description" class="form-control" rows="5" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="author">作者</label>
+                <input type="text"" class=" form-control" name="author" id="author" placeholder="请输入作者"
+                  value="{{article.author}}" required>
+              </div>
+              <div class="form-group">
+                <label for="is_open">是否公开</label>
+                <select name="is_open" id="is_open" class="form-control" required>
+                  <option value="">请选择</option>
+                  {% for open in opens %}
+                  <option value="{{open.id}}">{{open.name}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+              <div id="opentype" class="form-group" style="display: none;">
+                <label for="open_type">公开类型</label>
+                <select name="open_type" id="open_type" class="form-control" required>
+                  {% for type in openTypes %}
+                  <option value="{{type.id}}">{{type.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="keywords">关键词</label>
+                <input type="text" class="form-control" name="keywords" id="keywords" placeholder="输入关键词，多个关键词用英文逗号隔开"
+                  value="{{article.keywords}}">
+              </div>
+              <div class="form-group">
+                <label for="link">引用地址</label>
+                <input type="text" class="form-control" name="link" id="keywords" placeholder="非原创作品输入引用文章地址"
+                  value="{{article.link}}">
+              </div>
+              <div class="form-group">
+                <label for="link">缩略图</label>
+                <input hidden name="thumb" id="thumb">
+                <div class="dropzone" id="myDropzone">
+                  <div class="am-text-success dz-message">
+                    将文件拖拽到此处<br>或点此打开文件管理器选择文件
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <label for="content">项目描述</label>
+                  <form>
+                    <div id="div1">
+                    </div>
+                  </form>
+                  <textarea id="content" style="display: none;" name="content" placeholder="输入文章内容"></textarea>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">创建项目</button>
+                </div>
+          </form>
+
+        </div>
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="float-right d-none d-sm-inline">
+        态度决定一切，代码改变生活
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2020-2030 <a href="https://qzimp.cn">泉州信息工程学院软件学院互联网+社团</a>.</strong> All rights
+      reserved.
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+  <div id="layer" style="display: none;">
+    layer
+  </div>
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/public/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/public/dist/js/adminlte.min.js"></script>
+
+  <script src="/public/plugins/wangEditor3.1.1/wangEditor.min.js"></script>
+  <script type="text/javascript" src="/public/plugins/jquery-ui/jquery-ui.min.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/public/plugins/jquery-ui/datepicker-cn.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/public/plugins/layer/layer.js" charset="UTF-8"></script>
+  <script src="/public/plugins/dropzone-5.7.0/dist/min/dropzone.min.js"></script>
+
+
+  <script>
+    //wangEditor
+    var E = window.wangEditor
+    var editor = new E('#div1')
+    editor.customConfig.menus = [
+      'head', // 标题
+      'bold', // 粗体
+      'fontSize', // 字号
+      'fontName', // 字体
+      'link', // 插入链接
+      'list',
+      'justify', // 对齐方式
+      'image', // 插入图片
+      'table', // 表格
+      'code', // 插入代码
+    ]
+    //editor.customConfig.uploadImgShowBase64 = true
+    editor.customConfig.uploadImgServer = '/home/wang/upload'
+    var $text1 = $('#content')
+    editor.customConfig.onchange = function (html) {
+      // 监控变化，同步更新到 textarea
+      //html="{{depart.depart_desc}}";
+      $text1.val(html)
+    }
+    editor.create()
+    // 初始化 textarea 的值
+    var content = "{{article.contet}}";
+    var s = Escapehtml(content);
+    //console.log(content)
+    editor.txt.html(s);
+
+    function Escapehtml(sHtml) {
+      var s = "";
+      if (sHtml.length == 0) {
+        return ""
+      };
+      s = sHtml.replace(/&lt;/g, '<');
+      s = s.replace(/&gt;/g, '>');
+      s = s.replace(/&quot;/g, '"');
+      s = s.replace(/&nbsp;/g, '');
+      return s;
+    }
+    $("#is_open").change(function () {
+      let is_open = $(this).val();
+      if (is_open == 1) {
+        $("#opentype").show();
+      } else {
+        $("#opentype").hide();
+      }
+    })
+
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#myDropzone", {
+        url: "/home/file/uploadimagebyajax",
+        addRemoveLinks: true,
+        method: 'post',
+        filesizeBase: 1024,
+        sending: function(file, xhr, formData) {
+            formData.append("filesize", file.size);
+        },
+        success: function (file, response, e) {
+           if(response.code==1){
+             $("#thumb").val(response.url)
+            alert(response.msg)
+           }
+           else{
+            alert(response.msg);
+           }
+        }
+      });
+  </script>
+</body>
+
+</html>

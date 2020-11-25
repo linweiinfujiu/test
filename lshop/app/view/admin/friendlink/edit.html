@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>友情链接编辑</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/article/edit" method="POST" >
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="title">友情链接名称</label>
+              <input type="text" class="form-control" id="link_name" name="link_name" value="{{friendlink.link_name}}"
+                placeholder="输入友情链接名称" required>
+            </div>
+            <div class="form-group">
+              <label for="title">链接地址</label>
+              <input type="text" class="form-control" id="link_url" name="link_url" value="{{friendlink.link_url}}"
+                placeholder="输入链接地址" required>
+            </div>
+            <div class="form-group">
+                <label for="title">排序</label>
+                <input type="number" value="50" class="form-control" id="orderby" name="orderby" value="{{friendlink.orderby}}"
+                 required>
+              </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="link_id" value="{{friendlink.link_id}}">
+            <div class="form-group">
+              <label for="link">是否显示</label>
+              <select class="form-control" name="is_show" id="is_show">
+                  {% if friendlink.is_show==1 %}
+                    <option value="1" selected>显示</option>
+                    <option value="0">隐藏</option>
+                  {% else %}
+                  <option value="1" >显示</option>
+                  <option value="0" selected>隐藏</option>
+                  {% endif %}
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="is_open">target</label>
+              <select class="form-control" name="target" id="target">
+                {% if friendlink.target==1 %}
+                  <option value="1" selected>_blank</option>
+                  <option value="0">_self</option>
+                {% else %}
+                <option value="1" >_blank</option>
+                <option value="0" selected>_self</option>
+                {% endif %}
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="thumb">缩略图</label>
+              <input type="text" class="form-control" id="thumb" name="link_logo" value="{{friendlink.link_logo}}"
+                placeholder="输入LOGO地址" readonly>
+                <iframe width="100%" height="50px" src="/admin/upload/showimage" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                {% if  friendlink.link_logo %}
+                <img id="showThumb"  class="img-rounded" alt="140x140" style="width: 140px; height: 140px;" src="/public/images/default.png" data-holder-rendered="true">
+                {% else %}
+                <img id="showThumb"  class="img-rounded" alt="140x140" style="width: 140px; height: 140px;" src="{{friendlink.link_logo|default('/public/images/default.png')}}" data-holder-rendered="true">
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+ 
+</body>
+
+</html>

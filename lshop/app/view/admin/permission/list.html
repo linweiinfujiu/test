@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>专业管理</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">专业管理</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0" style="height: auto;">
+            <table class="table table-head-fixed">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>学院</th>
+                  <th>专业名称</th>
+                  <th>管理</th>
+                </tr>
+              </thead>
+              <tr>
+                <td colspan="4" align="left">
+                  <a href="/admin/major/toedit" class="btn btn-info">添加</a>
+                </td>
+              </tr>
+              <tbody>
+                {% for major in majors%}
+                <tr>
+                  <td>{{major.id}}</td>
+                  <td>
+                    <select class="form-control">
+                      {% for depart in departs%}
+                      {% if depart.id==major.depart_id %}
+                      <option value="{{depart.id}}" selected>{{depart.depart_name}}</option>
+                      {% else %}
+                      <option value="{{depart.id}}">{{depart.depart_name}}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td>{{major.major_name}}</td>
+                  <td>
+                    <a href="/admin/major/toedit?id={{major.id}}" class="btn btn-info">更新</a>
+                    <a href="/admin/major/delete?id={{marjor.id}}" class="btn btn-info">删除</a>
+                  </td>
+                </tr>
+                {% endfor %}
+  
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div> <!-- /.row -->
+  
+    <!-- /.row -->
+  </div> 
+</body>
+</html>

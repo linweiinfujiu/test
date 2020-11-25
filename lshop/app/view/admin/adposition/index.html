@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">广告列表</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0" style="height: auto;">
+            <table class="table table-head-fixed">
+              <thead>
+                <tr>
+                  <td colspan="6">
+                    <a href="/admin/adposition/toedit" class="btn btn-block btn-outline-primary btn-sm">添加</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>编号</th>
+                  <th>广告位置</th>
+                  <th>广告宽度</th>
+                  <th>广告高度</th>
+                  <th>是否关闭</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for adPosition in adPositions%}
+                <tr>
+                  <td>{{adPosition.position_id}}</td>
+                  <td>{{adPosition.position_name}}</td>
+                  <td>{{adPosition.ad_width}}</td>
+                  <td>{{adPosition.ad_height}}</td>
+                  <td>{{adPosition.is_open}}</td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="/admin/adposition/toedit?id={{adPosition.position_id}}" class="btn btn-info">更新</a>
+                      <a href="/admin/adposition/delete?id={{adPosition.position_id}}" class="btn btn-info">删除</a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div> <!-- /.row -->
+  
+    <!-- /.row -->
+  </div>
+</body>
+</html>

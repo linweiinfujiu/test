@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动管理</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">活动管理</h3>
+
+
+                        <div class="card-tools">
+                            <!-- 添加框 -->
+                            <div class="card-tools" style="width: 150px;float: left;">
+                                <a href="/admin/communityactivity/toedit" class="btn btn-info" title="添加"><i
+                                        class="far fa-plus-square"></i></a>
+                            </div>
+                            <!-- 搜索框 -->
+                            <div class="input-group input-group-sm" style="width: 150px;float: left;">
+                                <div class="card-tools">
+                                    <a href="/admin/communityactivity/tosearch" class="btn btn-default"><i class="fas fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <div class="card-tools">
+                                    <a href="/admin/communityactivity" class="btn btn-default">刷新</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 搜索框结束 -->
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: auto;">
+                        <table class="table table-head-fixed">
+                            <thead>
+                                <tr>
+                                    <th>活动名</th>
+                                    <th width="120px">活动类型</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>内容</th>
+                                    <th>负责人</th>
+                                    <th>举办社团</th>
+                                    <th width="80px">状态</th>
+                                    <th width="80px">附件</th>
+                                    <th width="120px">管理</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for communityActivtiyItem in communityActivtiy %}
+                                <tr>
+                                    <!-- 标题 -->
+                                    <td>{{communityActivtiyItem.title}}</td>
+                                    <!-- 类型 下拉选择框 -->
+                                    <td>{{communityActivtiyItem.type}}</td>
+                                    <!-- 开始时间 -->
+                                    <td>{{communityActivtiyItem.starttime |changeTimeStamp }}</td>
+                                    <!-- 结束时间 -->
+                                    {% if communityActivtiyItem.endtime==null or communityActivtiyItem.endtime==0 %}
+                                    <td></td>
+                                    {% else %}
+                                    <td>{{communityActivtiyItem.endtime | changeTimeStamp }}</td>
+                                    {% endif %}
+                                    <!-- 内容 -->
+                                    <td>{{communityActivtiyItem.content}}</td>
+                                    <!-- 负责人 -->
+                                    <td>{{communityActivtiyItem.chager}}</td>
+                                    <!-- 举办社团 -->
+                                    <td>{{communityActivtiyItem.c_id}}</td>
+                                    <!-- 状态 -->
+                                    <td>
+                                        {% for type in statusitems %} {% if type.id==communityActivtiyItem.status %}
+                                        <span>{{type.name}}</span> {% else %}
+                                        <span style="display: none;">{{type.name}}</span> {% endif %} {% endfor %}
+                                    </td>
+                                    {% if communityActivtiyItem.attentment=="" or communityActivtiyItem.attentment==Null %}
+                                    <td>无附件</td>
+                                    {% else %}
+                                    <td>存在</td>
+                                    {% endif %}
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="/admin/communityactivity/toedit?id={{communityActivtiyItem.id}}" title="编辑" class="btn-sm btn-default"><i class="far fa-edit"></i></a>
+                                            <a href="/admin/communityactivity/delete?id={{communityActivtiyItem.id}}" title="删除" class="btn-sm btn-default" onclick="return confirm('是否真的要删除--'+'{{communityActivtiyItem.title}}')">
+                                                <i class="far fa-minus-square"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+    </div>
+
+
+
+
+</body>
+
+</html>

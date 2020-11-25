@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章分类管理</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">文章分类管理</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0" style="height: auto;">
+            <table class="table table-head-fixed">
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>类型</th>
+                  <th>是否导航</th>
+                  <th>关键词</th>
+                  <th>排序</th>
+                  <th>父编号</th>
+                  <th width="150">管理</th>
+                </tr>
+              </thead>
+              <tr>
+                <td colspan="4" align="left">
+                  <a href="/admin/articlecate/toedit" class="btn btn-info" title="添加"><i class="far fa-plus-square" ></i></a>
+                </td>
+              </tr>
+              <tbody>
+                {% for cate in articleCates %}
+                <tr>
+                  <td>{{cate.cat_name}}</td>
+                  <td>
+                    <select class="form-control" name="cat_type" id="cat_type">
+                      {% if cate.cat_type==0 %}
+                      <option value="0" selected>PC端</option>
+                      <option value="1" >移动端</option>
+                      {% else %}
+                      <option value="0" >PC端</option>
+                      <option value="1" selected>移动端</option>
+                      {% endif %}
+                    </select>
+                  </td>
+                  <td>
+                      <select class="form-control" name="show_in_nav" id="show_in_nav">
+                          {% if cate.show_in_nav==0 %}
+                          <option value="0" selected>否</option>
+                          <option value="1">是</option>
+                          {% else %}
+                          <option value="0" >否</option>
+                          <option value="1" selected>是</option>
+                          {% endif %}
+                        </select>
+                  </td>
+                  <td>{{cate.keywords}}</td>
+                  <td>{{cate.sort_order}}</td>
+                  <td>{{cate.parent_id}}</td>
+                  <td>
+                      <div class="btn-group">
+                          <a href="/admin/articlecate/toedit?id={{cate.cat_id}}"  title="编辑" class="btn-sm btn-default" ><i class="far fa-edit" ></i></a>
+                          <a href="/admin/articlecate/delete?id={{cate.cat_id}}" title="删除" class="btn-sm btn-default" onclick="return confirm('是否真的要删除')"><i class="far fa-minus-square" ></i></a>
+                         <a href="/admin/articlecate/child?parent_id={{cate.parent_id}}" title="添加子分类" class="btn-sm btn-default" ><i class="far fa-arrow-alt-circle-down" ></i></a>
+                      </div>
+                            
+                            
+                     
+                   
+                    
+                    
+                  </td>
+                </tr>
+                {% endfor %}
+  
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div> <!-- /.row -->
+  
+    <!-- /.row -->
+  </div> 
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <script src="/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

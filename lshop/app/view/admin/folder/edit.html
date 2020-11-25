@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/folder/edit" method="post">
+      <!-- left column -->
+      <input type="hidden" name="id" value="{{folder.id}}">
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+  
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name">文件夹名称</label>
+              <input type="text" class="form-control" id="name" name="name" value="{{folder.name}}" placeholder="输入文件夹名称"
+                required>
+            </div>
+  
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+  
+            <div class="form-group">
+              <label for="icon">文件夹图标</label>
+              <input type="text" class="form-control" id="icon" name="icon" value="{{folder.icon}}" placeholder="输入文件夹图标">
+            </div>
+            <div class="form-group">
+              <label for="status">状态</label>
+              <select class="form-control" name="status">
+                <option value="0">开启</option>
+                <option value="1">关闭</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>父编号</label>
+              <input type="text" class="form-control" id="pid" name="pid" value="{{folder.pid|default(0)}}"
+                placeholder="输入父编号">
+            </div>
+          </div>
+  
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div> 
+</body>
+</html>

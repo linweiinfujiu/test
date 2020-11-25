@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/adposition/edit" method="post">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+  
+          <div class="card-body">
+            <div class="form-group">
+              <label for="position_name">广告位置</label>
+              <input type="text" class="form-control" id="position_name" name="position_name"
+                value="{{adPosition.position_name}}" placeholder="输入广告位置" required>
+            </div>
+            <div class="form-group">
+              <label for="ad_width">广告宽度</label>
+              <input type="number" class="form-control" id="ad_width" name="ad_width" value="{{adPosition.ad_width}}"
+                placeholder="输入广告宽度" required>
+            </div>
+            <div class="form-group">
+              <label for="ad_height">广告高度</label>
+              <input type="number" class="form-control" id="ad_height" name="ad_height" value="{{adPosition.ad_height}}"
+                placeholder="输入广告高度" required>
+            </div>
+            <div class="form-group">
+              <label>广告描述</label>
+              <textarea class="form-control" name="position_desc" required rows="3"
+                placeholder="请输入...">{{adPosition.position_desc}}</textarea>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="position_id" value="{{adPosition.position_id}}">
+            <div class="form-group">
+              <label>广告样式</label>
+              <textarea class="form-control" rows="3" placeholder="广告模板"
+                name="position_style">{{adPosition.position_style}}</textarea>
+            </div>
+            <div class="form-group">
+              <label>是否关闭</label>
+              <select class="form-control" name="is_open">
+                <option value="0">开启</option>
+                <option value="1">关闭</option>
+              </select>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div> 
+</body>
+</html>

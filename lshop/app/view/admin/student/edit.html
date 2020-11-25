@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>学生编辑</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/student/edit" method="POST">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="student_name">学生姓名</label>
+              <input type="text" class="form-control" id="student_name" name="student_name"
+                value="{{student.student_name}}" placeholder="输入学生姓名" required>
+            </div>
+            <div class="form-group">
+              <label for="student_no">学号</label>
+              <input type="text" class="form-control" id="student_no" name="student_no" value="{{student.student_no}}"
+                placeholder="输入学号" required>
+            </div>
+            <div class="form-group">
+              <label for="cat_id">部门</label>
+              <select class="form-control" name="depart_id" id="depart_id" required>
+                <option value="-1">请选择部门</option>
+                {% for depart in departs %}
+                {% if student.depart_id==depart.id%}
+                <option value="{{depart.id}}" selected>{{depart.depart_name}}</option>
+                {% else %}
+                <option value="{{depart.id}}">{{depart.depart_name}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+           
+            <div class="form-group">
+              <label for="major_id">专业</label>
+              <div class="form-inline">
+              <select class="form-control" name="major_id" id="major_id" style="width: 70%;" required>
+                {% for major in majors %}
+                {% if student.major_id==major.id%}
+                <option value="{{major.id}}" selected>{{major.major_name}}</option>
+                {% else %}
+                <option value="{{major.id}}">{{major.major_name}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+              <a href="/admin/major/toedit" class="form-control btn btn-warning" style="width: 30%;">添加专业</a>
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="classmate_id">班级</label>
+              <div class="form-inline">
+              <select class="form-control" name="classmate_id" id="classmate_id" style="width: 70%;" required>
+                
+                  {% for classinfo in classinfos %}
+                  {% if student.classmate_id==classinfo.id%}
+                  <option value="{{classinfo.id}}" selected>{{classinfo.classinfo_name}}</option>
+                  {% else %}
+                  <option value="{{classinfo.id}}">{{classinfo.classinfo_name}}</option>
+                  {% endif %}
+                  {% endfor %}
+                
+              </select>
+              <a href="/admin/classinfo/toedit"  class="form-control btn btn-warning" style="width: 30%;">添加班级</a>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="status">学生状态</label>
+              <!-- 退学、锁定、在校、毕业 、休学-->
+              <select class="form-control" name="status" id="status">
+                 {% for status in statuses %}
+                    <option value="{{status.id}}">{{status.name}}</option>
+                 {% endfor %}
+              </select>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="id" value="{{student.id}}">
+            <div class="form-group">
+              <label for="email">电子邮箱</label>
+              <input type="email" class="form-control" id="email" name="email" value="{{student.email}}"
+                placeholder="输入电子邮件" >
+            </div>
+
+            <div class="form-group">
+              <label for="telephone">移动电话</label>
+              <input type="tel" class="form-control" id="telephone" name="telephone" value="{{student.telephone}}"
+                placeholder="输入移动电话" >
+            </div>
+            <div class="form-group">
+              <label for="weixin">微信号</label>
+              <input type="text" class="form-control" id="weixin" name="weixin" value="{{student.weixin}}"
+                placeholder="输入微信号" >
+            </div>
+            <div class="form-group">
+              <label for="qq">qq</label>
+              <input type="text" class="form-control" id="qq" name="qq" value="{{student.qq}}"
+                placeholder="输入qq号" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <script>
+    $('#depart_id').change(function () {
+
+      let depart_id = $(this).val();
+      if(depart_id==-1){
+        alert('部门没有选择！');
+        return;
+      }
+      let param={};
+      param.depart_id=depart_id;
+      $.get('/api/querymajorandclassinfobydepartid',param,function(res){
+        if(res.code==1){
+          let majors=res.data.majors;
+          $('#major_id').empty();
+          if(!majors||majors.length==0){
+             alert('专业没有数据，请添加专业');
+             return;
+          }
+          majors.forEach(element=>{
+            $('#major_id').append(
+                 `
+                 <option value='${element.id}'>${element.major_name}</option>
+                 `
+               )
+          })
+
+          let classinfos=res.data.classinfos;
+          if(!classinfos||classinfos.length==0){
+             alert('班级没有数据，请添加班级');
+             return;
+          }
+          $('#classmate_id').empty();
+          classinfos.forEach(element=>{
+            $('#classmate_id').append(
+                 `
+                 <option value='${element.id}'>${element.classinfo_name}</option>
+                 `
+               )
+          })
+
+        }
+
+         
+        //  $('#marjor_id').empty();
+        //  res.data.majors.array.forEach(element => {
+        //        $('#marjor_id').append(
+        //          `
+        //          <option value='${element.id}'>${element.major_name}</option>
+        //          `
+        //        )
+        //  });
+
+      })
+
+
+    })
+  </script>
+</body>
+
+</html>

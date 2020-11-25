@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章分类管理</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/articlecate/edit" method="POST">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="cat_name">文章分类</label>
+              <input type="text" class="form-control" id="cat_name" name="cat_name" value="{{articlecate.cat_name}}"
+                placeholder="输入文章分类" required>
+            </div>
+            <div class="form-group">
+              <label for="cat_type">分类类型</label>
+              <select class="form-control" name="cat_type" id="cat_type">
+                  {% if articlecate.cat_type==0 %}
+                  <option value="0" selected>PC端</option>
+                  <option value="1" >移动端</option>
+                  {% else %}
+                  <option value="0" >PC端</option>
+                  <option value="1" selected>移动端</option>
+                  {% endif %}
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="show_in_nav">是否导航</label>
+              <select class="form-control" name="show_in_nav" id="show_in_nav">
+                  {% if articlecate.show_in_nav==0 %}
+                  <option value="0" selected>否</option>
+                  <option value="1">是</option>
+                  {% else %}
+                  <option value="0" >否</option>
+                  <option value="1" selected>是</option>
+                  {% endif %}
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="parent_id">父编号</label>
+              <input type="text" class="form-control" id="parent_id" name="parent_id" value="{{articlecate.parent_id}}"
+                placeholder="输入父编号" required>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="cat_id" value="{{articlecate.cat_id}}">
+            <div class="form-group">
+              <label for="cat_alias">分类别名</label>
+              <input type="text" class="form-control" id="cat_alias" name="cat_alias" value="{{articlecate.cat_alias}}"
+                placeholder="输入文章分类别名">
+            </div>
+            <div class="form-group">
+              <label for="keywords">关键词</label>
+              <input type="text" class="form-control" id="keywords" name="keywords" value="{{articlecate.keywords}}"
+                placeholder="输入关键词">
+            </div>
+            <div class="form-group">
+              <label for="sort_order">排序</label>
+              <input type="text" class="form-control" id="sort_order" name="sort_order"
+                value="{{articlecate.sort_order|default(50)}}" placeholder="输入关键词">
+            </div>
+
+            <div class="form-group">
+              <label for="cat_desc">文章分类描述</label>
+              <textarea class="form-control" id="cat_desc" name="cat_desc" placeholder="文章分类描述">{{articlecate.cat_desc}}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  
+</body>
+
+</html>

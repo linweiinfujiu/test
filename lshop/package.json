@@ -1,0 +1,66 @@
+{
+  "name": "lshop",
+  "version": "1.0.0",
+  "description": "微店",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "egg": "^2.15.1",
+    "egg-bizerror": "^2.2.1",
+    "egg-cors": "^2.2.3",
+    "egg-multipart": "^2.10.3",
+    "egg-redis": "^2.4.0",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^5.2.1",
+    "egg-static": "^2.2.0",
+    "egg-swagger-doc": "^2.3.2",
+    "egg-validate": "^2.0.2",
+    "egg-validate-plus": "^1.1.6",
+    "egg-view-nunjucks": "^2.2.0",
+    "images": "^3.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "minio": "^7.0.16",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "mz": "^2.7.0",
+    "mz-modules": "^2.1.0",
+    "xlsx": "^0.16.8"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "egg-sequelize-auto": "^0.1.1",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-lshop",
+    "stop": "egg-scripts stop --title=egg-server-lshop",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod",
+    "dbinit": "egg-sequelize-auto -o ./app/model -h 47.106.220.247 -p 3306 -d shop -u root -x wuzongbo751130"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "吴宗波",
+  "license": "MIT"
+}

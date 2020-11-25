@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>广告编辑</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/adposition/edit" method="post">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+  
+          <div class="card-body">
+            <div class="form-group">
+              <label>广告位置</label>
+              <select class="form-control" name="pid">
+                {% for adposition in adPostions %}
+                    {%  if ad.pid==adposition.position_id %}
+                    <option value="{{adposition.position_id}}" selected>{{adposition.position_name}}</option>
+                    {% else  %}
+                    <option value="{{adposition.position_id}}">{{adposition.position_name}}</option>
+                    {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>广告类型</label>
+              <select class="form-control" id="media_type" name="media_type" required>
+                <option value="">请选择广告类型</option>
+                <option value="0">图片广告</option>
+                <option value="1">文字广告</option>
+                <option value="2">视频广告</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>是否显示</label>
+              <select class="form-control" name="enabled">
+                <option value="1">显示</option>
+                <option value="0">不显示</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ad_name">广告名称</label>
+              <input type="text" class="form-control" id="ad_name" name="ad_name" value="{{ad.ad_name}}"
+                placeholder="输入广告名称" required>
+            </div>
+            <div class="form-group">
+              <label for="ad_link">广告链接</label>
+              <input type="text" class="form-control" id="ad_link" name="ad_link" value="{{ad.ad_link}}"
+                placeholder="输入广告链接" required>
+            </div>
+            <div class="form-group" id="addadcode">
+  
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- select -->
+                  <div class="form-group">
+                    <label>开始时间</label>
+                    <input type="date" class="form-control" id="start_time" name="start_time" value="{{ad.start_time}}"
+                      placeholder="输入广告开始" required>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>结束时间</label>
+                    <input type="date" class="form-control" id="end_time" name="end_time" value="{{ad.end_time}}"
+                      placeholder="输入广告结束时间" required>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">广告主</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="form-group">
+              <label>姓名</label>
+              <input type="text" class="form-control" id="link_man" name="link_man" value="{{ad.link_man}}"
+                placeholder="输入姓名" required>
+            </div>
+            <div class="form-group">
+              <label>电话</label>
+              <input type="text" class="form-control" id="link_phone" name="link_phone" value="{{ad.link_phone}}"
+                placeholder="输入电话" required>
+            </div>
+            <div class="form-group">
+              <label>邮箱</label>
+              <input type="text" class="form-control" id="link_email" name="link_email" value="{{ad.link_email}}"
+                placeholder="输入邮箱" required>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="ad_id" value="{{ad.ad_id}}">
+            <div class="form-group">
+              <label>排序</label>
+              <input type="number" class="form-control" id="orderby" name="orderby" value="{{ad.orderby|default(50)}}"
+                placeholder="输入排序">
+            </div>
+            <div class="form-group">
+              <label>受否新窗口打开</label>
+              <select class="form-control" name="target">
+                <option value="0">_self</option>
+                <option value="1">_blank</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>广告背景色</label>
+              <input type="text" class="form-control" id="bgcolor" name="bgcolor" value="{{ad.bgcolor}}"
+                placeholder="输入广告背景">
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- jQuery -->
+<script src="/public/plugins/jquery/jquery.min.js"></script>
+  <script>
+    $(function () {
+      $("#media_type").change(function () {
+        let mediatype = $(this).val();
+        if (mediatype == null || mediatype == '') {
+          alert('广告类型必须进行选择');
+          return;
+        } 
+        $("#addadcode").empty();
+        if (mediatype == '0') {
+  
+          let html = `
+                     <label for="ad_code">图片广告</label>
+                     <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="exampleInputImage">
+                          <label class="custom-file-label" for="exampleInputFile">选择图片 </label>
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="uploadInputImage">上传图片</span>
+                        </div>
+                      </div>
+                    `;
+  
+          $("#addadcode").append(html)
+  
+        } else if (mediatype == '1') {
+          let html =
+            ` <label for="ad_code">文字广告</label>
+                       <input type="text" class="form-control" id="ad_code" name="ad_code" value="{{ad.ad_code}}" placeholder="输入广告内容" required>`;
+          $("#addadcode").append(html)
+        } else {
+          let html = ` <label for="ad_code">视频广告</label>
+                     <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="exampleInputVideo">
+                          <label class="custom-file-label" for="exampleInputFile">选择视频</label>
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="uploadInputVideo">上传视频</span>
+                        </div>
+                      </div>
+                    `;
+  
+          $("#addadcode").append(html)
+        }
+  
+      })
+  
+      $("#addadcode").on('click', '#uploadInputVideo', function () {
+        alert("uploadInputVideo");
+      })
+      $("#addadcode").on('click', '#uploadInputImage', function () {
+        alert("uploadInputImage");
+      })
+  
+    })
+  </script>
+</body>
+</html>

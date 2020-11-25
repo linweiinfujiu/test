@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>班级编辑</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/classinfo/edit" method="POST" >
+      <!-- left column -->
+      <div class="col-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+              <input type="hidden" name="id" value="{{classinfo.id}}">
+              <div class="form-group">
+                  <label for="depart_id">选择专业</label>
+                  <select class="form-control" name="depart_id">
+                      {% for depart in departs%}
+                      {% if depart.id==classinfo.depart_id %}
+                      <option value="{{depart.id}}" selected>{{depart.depart_name}}</option>
+                      {% else %}
+                      <option value="{{depart.id}}">{{depart.depart_name}}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                </div>
+            <div class="form-group">
+              <label for="classinfo_name">班级名称</label>
+              <input type="text" class="form-control" id="classinfo_name" name="classinfo_name" value="{{classinfo.classinfo_name}}"
+                placeholder="输入专业名称" required>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <script src="/public/plugins/wangEditor3.1.1/wangEditor.min.js"></script>
+  <script>
+    
+    var E = window.wangEditor
+    var editor = new E('#div1')
+    editor.customConfig.menus = [
+      'head', // 标题
+      'bold', // 粗体
+      'fontSize', // 字号
+      'fontName', // 字体
+      'link', // 插入链接
+      'list',
+      'justify', // 对齐方式
+      'image', // 插入图片
+      'table', // 表格
+      'code', // 插入代码
+    ]
+    //editor.customConfig.uploadImgShowBase64 = true
+    editor.customConfig.uploadImgServer = '/admin/wang/upload'
+    var $text1 = $('#major_desc')
+
+    editor.customConfig.onchange = function (html) {
+      // 监控变化，同步更新到 textarea
+      //html="{{depart.depart_desc}}";
+      $text1.val(html)
+    }
+
+    editor.create()
+    // 初始化 textarea 的值
+    var content = "{{major.major_desc}}";
+    var s=Escapehtml(content);
+   //console.log(content)
+    editor.txt.html(s);
+
+   function Escapehtml(sHtml) {
+        var s="";
+        if(sHtml.length==0){return ""};
+        s=sHtml.replace(/&lt;/g,'<');
+        s=s.replace(/&gt;/g,'>');
+        s=s.replace(/&quot;/g,'"');
+        return s;
+    }
+  </script>
+</body>
+
+</html>

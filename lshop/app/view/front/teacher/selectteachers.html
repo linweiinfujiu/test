@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="互联网+创新创业教育中心隶属于泉州信息工程学院软件学院，该中心包括多名的教授和引进的高水平技术人员">
+    <meta name="keywords" content="泉州 泉州信息工程学院 软件学院 互联网+创新创业教育中心,用户中心">
+    <title>教师中心</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                    <img src="/public/dist/img/logo.png" alt="软件学院双创教育中心" class="brand-image img-circle elevation-3"
+                        style="opacity: .8">
+                    <span class="brand-text font-weight-light">软件学院双创教育中心</span>
+                </a>
+                <!-- Right navbar links -->
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <!-- Messages Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="fas fa-comments"></i>
+                            <span class="badge badge-danger navbar-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="/public/dist/img/user1-128x128.jpg" alt="User Avatar"
+                                        class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Brad Diesel
+                                            <span class="float-right text-sm text-danger"><i
+                                                    class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">Call me whenever you can...</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="/public/dist/img/user8-128x128.jpg" alt="User Avatar"
+                                        class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            John Pierce
+                                            <span class="float-right text-sm text-muted"><i
+                                                    class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">I got your message bro</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="/public/dist/img/user3-128x128.jpg" alt="User Avatar"
+                                        class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Nora Silvester
+                                            <span class="float-right text-sm text-warning"><i
+                                                    class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">The subject goes here</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                        </div>
+                    </li>
+                    <!-- Notifications Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            {{teacher.teacher_name}} <i class="fa fa-user-circle-o mr-3"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-mini dropdown-menu-right">
+                            <a href="/" class="dropdown-item">
+                                <i class="fa fa-home mr-2"></i> 首页
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-cog mr-2"></i> 用户设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-eercast mr-2"></i> 用户退出
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <div class="container d-flex flex-row p-2 ">
+                <div class="menu" style="width: 150px; min-height: 300px;">
+                    <div class="my d-flex flex-column align-items-center bg-light mb-2">
+                        <img src="/public/images/cat.jpg" width="100" height="100" alt="my" class="rounded-circle">
+                        <div class="my-name mb-1 mt-1">吴宗波</div>
+                        <a href="/home/teacher/config" class="btn btn-warning btn-sm">账号管理</a>
+                    </div>
+                    <ul class="list-group menu-item">
+                        <li class="list-group-item "><a href="/home/teacher/project">我的项目</a></li>
+                        <li class="list-group-item"><a href="#">我的社团</a></li>
+                        <li class="list-group-item"><a href="/home/teacher/project">我的工作室</a></li>
+                        <li class="list-group-item"><a href="/home/teacher/project">读书笔记</a></li>
+                    </ul>
+                </div>
+                <div class="content flex-grow-1">
+                    <div class="notice-list p-4">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/home/teacher/center">教师中心</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">通知</li>
+                            </ol>
+                        </nav>
+                        <div class="d-flex ">
+                            <div class="departs mr-2" style="width:250px">
+                                <ul class="list-group">
+                                    <li class="list-group-item active">选择部门</li>
+
+                                    {% for depart in departs %}
+                                    <li class="list-group-item"><a
+                                            href="/home/teacher/toselectteachers?depart_id={{depart.id}}&projectId={{projectId}}">{{depart.depart_name}}</a>
+                                    </li>
+                                    {% endfor%}
+                                </ul>
+                            </div>
+                            <div class="teachers flex-grow-1">
+                                <input type="hidden" id="projectId" value="{{projectId}}">
+                                <ul class="list-group ">
+                                    <li class="list-group-item">选择教师</li>
+                                    {% for teacher in teachers %}
+                                    <li class="list-group-item"><input type="checkbox" id="{{teacher.id}}"
+                                            value="{{teacher.teacher_name}}">
+                                        {{teacher.teacher_name}}</li>
+                                    {% endfor%}
+
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-info" type="submit" id="addTeachers">添加教师</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                态度决定一切，代码改变生活
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2020-2030 <a href="https://qzimp.cn">泉州信息工程学院软件学院互联网+社团</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="/public/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/public/dist/js/adminlte.min.js"></script>
+
+    <script>
+        let ids = [];
+        $(':checkbox').change(function () {
+            if ($(this).is(":checked")) {
+                ids.push($(this).attr('id'));
+            } else {
+                let id = $(this).attr('id');
+                let idsindex = ids.findIndex(function (a) {
+                    return a == id
+                });
+                ids.splice(idsindex, 1);
+            }
+        })
+        $("#addTeachers").on('click', function () {
+            if (ids.length <= 0) {
+                alert('没有选择教师')
+                return;
+            }
+            // ajax
+            let projectId = $("#projectId").val();
+            let eps = [];
+            if (projectId) {
+                ids.forEach(function (id) {
+                    let enrollProject = {};
+                    enrollProject.user_id = id;
+                    enrollProject.project_id = projectId;
+                    enrollProject.is_enroll_project = 0 //需要对方同意
+                    enrollProject.user_type = 2;
+                    enrollProject.agree = 1;
+                    let now = new Date().getTime().toString().substring(0, 10);
+                    enrollProject.create_time = now;
+                    eps.push(enrollProject);
+                })
+                $.post("/home/teacher/enroll/project", {
+                    eps: eps
+                }, function (res) {
+                    console.log(res);
+                    if (res.code == 1) {
+                        alert('邀请教师参加项目成功,教师同意才能加入项目')
+                    } else {
+                        alert('邀请教师参加项目失败')
+                    }
+                })
+                return;
+
+            } else {
+                alert("参数传递错误")
+                return;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>管理员编辑</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/edit" method="POST" >
+      <!-- left column -->
+      <div class="col-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="title">姓名</label>
+              <input type="text" class="form-control" id="admin_name" name="admin_name" value="{{admin.admin_name}}"
+                placeholder="输入姓名" required>
+            </div>
+            <div class="form-group">
+              <label for="author_email">邮箱</label>
+              <input type="email" class="form-control" id="email" name="email" value="{{admin.email}}"
+                placeholder="输入邮箱" required>
+            </div>
+            
+            
+            <div class="form-group">
+              <label for="cat_id">状态</label>
+              <select class="form-control" name="status" id="status">
+                  {% for status in statuses %}
+                  {% if admin.status==status.id %}
+                  <option value="{{status.id}}" selected>{{status.name}}</option>
+                  {% else %}
+                  <option value="{{status.id}}">{{status.name}}</option>
+                  {% endif %}
+                  {% endfor %}
+              </select>
+            </div> 
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+     
+
+      <div class="col-12">
+        <input type="hidden" name="admin_id" value="{{admin.admin_id}}">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div>
+  <!-- ChartJS -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+  <script>
+    
+  
+  </script>
+</body>
+
+</html>

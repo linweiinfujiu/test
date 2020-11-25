@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>管理员登录</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition login-page">
+  <div class="login-box">
+
+    <div class="login-logo">
+      <a href="/"><b>双创</b>教育中心</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">输入你的登录信息</p>
+        <form id="loginForm">
+          <div class="input-group mb-3">
+            <input id="email" type="email" class="form-control" name="email" placeholder="输入邮箱">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="password" type="password" class="form-control" name="password" placeholder="输入密码">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="verifycode" type="text" class="form-control" name="verifycode" placeholder="输入认证码">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- /.col -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">登录</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="/public/plugins/jquery/jquery.min.js"></script>
+    
+  <script>
+    $('#loginForm').submit(function(){
+      let params={};
+      params.email=$('#email').val();
+      params.password=$('#password').val();
+      params.verifycode=$('#verifycode').val();
+      $.post('/api/admin/login',params,function(res){
+        
+        if(res.code==0){
+          alert(res.msg)
+          return;
+        }
+        else{
+          window.location.href='/admin'
+        }
+      })
+      return false; 
+    })
+  </script>
+
+
+</body>
+
+</html>

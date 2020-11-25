@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">模块列表</h3>
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0" style="height: auto;">
+          <table class="table table-head-fixed">
+            <thead>
+              <tr>
+                <td colspan="10">
+                  <a href="/admin/module/toedit" class="btn btn-outline-primary btn-sm">添加</a>
+                </td>
+              </tr>
+              <tr>
+                <th>编号</th>
+                <th>模块</th>
+                <th>层级</th>
+                <th>模块名称</th>
+                <th>地址</th>
+                <th>图标</th>
+                <th>可见</th>
+                <th>父编号</th>
+                <th>排序</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for module in modules%}
+              <tr>
+                <td>{{module.mod_id}}</td>
+                <td>{{module.module}}</td>
+                <td>{{module.level}}</td>
+                <td>{{module.title}}</td>
+                <td>{{module.url}}</td>
+                <td>{{module.icon}}</td>
+                <td>{{module.visible}}</td>
+                <td>{{module.parent_id}}</td>
+                <td>{{module.orderby}}</td>
+                <td>
+                  <div class="btn-group">
+                    <a href="/admin/module/toedit?id={{module.mod_id}}" class="btn btn-info">更新</a>
+                    <a href="/admin/module/delete?id={{module.mod_id}}" class="btn btn-info">删除</a>
+                    <a href="/admin/module/toedit?&parent_id={{module.mod_id}}" class="btn btn-info">添加下级</a>
+                    {% if module.level==1 %}
+                    <a href="/admin/module?level={{module.level+1}}&parent_id={{module.mod_id}}" class="btn btn-info">下级</a>
+                    {% elif module.level==2 %}
+                    <a href="/admin/module/upper?level={{module.level-1}}&parent_id={{module.parent_id}}" class="btn btn-info">上级</a>
+                    <a href="/admin/module?level={{module.level+1}}&parent_id={{module.mod_id}}" class="btn btn-info">下级</a>
+                   
+                    {% else %}
+                    <a href="/admin/module/upper?level={{module.level-1}}&parent_id={{module.parent_id}}" class="btn btn-info">上级</a>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div> <!-- /.row -->
+
+  <!-- /.row -->
+</div>
+</body>
+</html>
+
+
+

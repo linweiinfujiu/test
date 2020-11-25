@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模块编辑</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  
+</body>
+</html>
+<div class="container-fluid">
+  <form class="row" action="/admin/module/edit" method="post">
+    <!-- left column -->
+    <input type="hidden" name="mod_id" value="{{module.mod_id}}">
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">必填信息</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">模块</label>
+            <input type="text" class="form-control" id="module" name="module" value="{{module.module}}" placeholder="输入模块"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="name">模块名称</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{module.title}}" placeholder="输入模块名称"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="name">层级</label>
+            <input type="text" class="form-control" id="level" name="level" value="{{module.level}}" placeholder="输入模块等级"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="visible">可见</label>
+            <select class="form-control" name="visible">
+              <option value="1">可见</option>
+              <option value="0">不可见</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">排序</label>
+            <input type="number" class="form-control" id="orderby" name="orderby" value="{{module.orderby|default(50)}}" placeholder="输入模块排序"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="name">父编号</label>
+            <input type="number" class="form-control" id="parent_id" name="parent_id" value="{{module.parent_id|default(0)}}" placeholder="输入模块等级"
+              required>
+          </div>
+          <div class="form-group">
+            <label>图标</label>
+            <input type="text" class="form-control" id="icon" name="icon" value="{{module.icon}}"
+              placeholder="输入父编号" required>
+          </div>
+          <div class="form-group">
+            <label>模块路径</label>
+            <input type="text" class="form-control" id="url" name="url" value="{{module.url}}"
+              placeholder="输入父编号" required>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+    <div class="col-md-6">
+      <!-- general form elements disabled -->
+      <div class="card card-warning">
+        <div class="card-header">
+          <h3 class="card-title">可选信息</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+          <div class="form-group">
+            <label for="icon">controller</label>
+            <input type="text" class="form-control" id="ctl" name="ctl" value="{{module.ctl}}" placeholder="输入controller">
+          </div>
+          <div class="form-group">
+            <label for="name">action</label>
+            <input type="text" class="form-control" id="act" name="act" value="{{module.act}}" placeholder="输入action">
+          </div>
+          
+        </div>
+
+        <!-- /.card-body -->
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary btn-block">保存</button>
+    </div>
+  </form>
+  <!-- /.row -->
+</div>

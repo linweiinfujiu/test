@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">上传文件</label>
+                            </div>
+                            <div class="input-group-append">
+                                <input type="submit" id="btnSubmit" value="上传">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+    </div>
+    <script src="/public/plugins/jquery/jquery.min.js"></script>
+    <script src="/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script>
+        $('form').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData();
+            // Attach file
+            formData.append('file', $('input[type=file]')[0].files[0]);
+            // con
+            $.ajax({
+                url: '/api/file/uploadfilebyajax',
+                data: formData,
+                method: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(result) {
+                    if (result.code == 1) {
+                        parent.document.getElementById('file_url').value = result.url
+                    } else {
+                        alert(result.msg)
+                    }
+
+                },
+                error: function(responseStr) {
+                    alert("error", responseStr);
+                }
+            });
+
+            function getCsrf() {
+                var keyValue = document.cookie.match('(^|;) ?csrfToken=([^;]*)(;|$)');
+                return keyValue ? keyValue[2] : null;
+            }
+        });
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
+
+</body>
+
+</html>

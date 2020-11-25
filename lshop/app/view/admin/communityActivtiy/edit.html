@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动编辑</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form class="row" action="/admin/communityactivity/edit" method="POST">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">必填信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">活动名</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{communityActivtiy.title}}" placeholder="输入活动名称" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="communityActivtiy_type">活动类型</label>
+                            <select class="form-control" name="type" id="status">
+                                {% for typeitem in  typeitems %}
+                                {% if typeitem==communityActivtiy.type %}
+                                <option value="{{typeitem}}" selected>{{typeitem}}</option>
+                                {% else %}
+                                <option value="{{typeitem}}">{{typeitem}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="communityActivtiy_period">活动开始时间</label>
+                            <!-- <input type="number" min="0" style="margin-right: 8px;" class="form-control" id="starttime" name="starttime" value="{{communityActivtiy.starttime}}" placeholder="输入竞赛时间" required> -->
+                            <div style="display: flex;justify-content: space-between;">
+                                <input type="date" style="margin-right: 8px; width: 46%;" class="form-control" name="startTime.date" value="{{startTime.date}}" />
+                                <input type="time" style="margin-left: 8px; width: 46%;" class="form-control" name="startTime.time" value="{{startTime.time}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="competition_org">主办社团</label>
+                            <input type="text" class="form-control" id="c_id" name="c_id" value="{{communityActivtiy.c_id	}}" placeholder="输入主办社团，多个社团以逗号隔开" required>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">可选信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <input type="hidden" name="id" value="{{communityActivtiy.id}}">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="status">状态</label>
+                                <select class="form-control" name="status" id="status">
+                                    <!-- 疑问 -->
+                                    {% for type in  statusitems %}
+                                    {% if type.id==communityActivtiy.status %}
+                                    <option value="{{type.id}}" selected>{{type.name}}</option>
+                                    {% else %}
+                                    <option value="{{type.id}}">{{type.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="chager">活动负责人</label>
+                            <input type="text" class="form-control" id="chager" name="chager" value="{{communityActivtiy.chager}}" placeholder="输入负责人名称" />
+                        </div>
+                        <div class="form-group">
+                            <label for="communityActivtiy_period">活动结束时间</label>
+                            <div style="display: flex;justify-content: space-between;">
+                                <input type="date" style="margin-right: 8px; width: 46%;" class="form-control" name="endTime.date" value="{{endTime.date}}" />
+                                <input type="time" style="margin-left: 8px; width: 46%;" class="form-control" name="endTime.time" value="{{endTime.time}}" />
+
+                            </div>
+                            <!-- <input type="number" min="0" style="margin-right: 8px;" class="form-control" id="endtime" name="endtime" value="{{communityActivtiy.endtime}}" placeholder="输入结束时间" /> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="thumb">活动附件</label>
+                            <input type="text" class="form-control" id="file_url" name="attentment" value="{{communityActivtiy.attentment}}" placeholder="输入附件" readonly>
+                            <iframe width="100%" height="50px" src="/admin/upload/showfile" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="content">活动内容</label>
+                    <form>
+                        <div id="div1">
+
+                        </div>
+                    </form>
+                    <textarea id="content" style="display: none;" name="content" placeholder="输入文章内容" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">保存</button>
+            </div>
+        </form>
+        <!-- /.row -->
+    </div>
+    <!-- ChartJS -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- jQuery -->
+    <script src="/public/plugins/jquery/jquery.min.js"></script>
+    <script src="/public/plugins/wangEditor3.1.1/wangEditor.min.js"></script>
+    <script>
+        var E = window.wangEditor
+        var editor = new E('#div1')
+        editor.customConfig.menus = [
+                'head', // 标题
+                'bold', // 粗体
+                'fontSize', // 字号
+                'fontName', // 字体
+                'link', // 插入链接
+                'list',
+                'justify', // 对齐方式
+                'image', // 插入图片
+                'table', // 表格
+                'code', // 插入代码
+            ]
+            //editor.customConfig.uploadImgShowBase64 = true
+        editor.customConfig.uploadImgServer = '/admin/wang/upload'
+        var $text1 = $('#content')
+
+        $text1.val("{{communityActivtiy.content}}");
+        // 修改
+        editor.customConfig.onchange = function(html) {
+            // 监控变化，同步更新到 textarea
+            //html="{{depart.depart_desc}}";
+            $text1.val(html)
+        }
+
+        editor.create()
+            // 初始化 textarea 的值
+        var content = "{{communityActivtiy.content}}";
+        var s = Escapehtml(content);
+        editor.txt.html(s);
+
+        function Escapehtml(sHtml) {
+            var s = "";
+            if (sHtml.length == 0) {
+                return ""
+            };
+            s = sHtml.replace(/&lt;/g, '<');
+            s = s.replace(/&gt;/g, '>');
+            s = s.replace(/&quot;/g, '"');
+            //  console.log(s);
+            s = s.replace(/&amp;nbsp;/ig, '');
+            return s;
+        }
+        $('form').submit(function(e) {
+            const beginTime = new Date($('input[name="startTime.date"]').val() + ' ' + $('input[name="startTime.time"]').val()).valueOf() / 1000;
+            const endtime = new Date($('input[name="endTime.date"]').val() + ' ' + $('input[name="endTime.time"]').val()).valueOf() / 1000;
+            // console.log($(this).serializeArray());
+
+            if (beginTime >= endtime) {
+                alert("开始时间大于结束时间");
+                return false;
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

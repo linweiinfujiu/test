@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <form class="row" action="/admin/adposition/edit" method="post">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">必填信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+  
+          <div class="card-body">
+            <div class="form-group">
+              <label>文件夹</label>
+              <select class="form-control" name="folder_id">
+                <option value="0">开启</option>
+                <option value="1">关闭</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>文件类型</label>
+              <select class="form-control" name="type">
+                <option value="0">图片</option>
+                <option value="1">视频</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">文件名称</label>
+              <input type="text" class="form-control" id="name" name="name" value="{{fileinfo.name}}" placeholder="输入文件名称"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="url">文件路径</label>
+              <input type="text" class="form-control" id="url" name="url" value="{{fileinfo.url}}" placeholder="输入文件路径"
+                required>
+  
+            </div>
+            <div class="form-group">
+              <label for="ad_height">上传时间</label>
+              <input type="date" class="form-control" id="date" name="date" value="{{fileinfo.date}}"
+                placeholder="输入文件上传时间" required>
+            </div>
+            <div class="form-group">
+              <label for="size">文件大小</label>
+              <input type="size" class="form-control" id="size" name="size" value="{{fileinfo.size}}"
+                placeholder="输入文件上传时间" required>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">可选信息</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" name="position_id" value="{{adPosition.position_id}}">
+            <div class="form-group">
+              <label>广告样式</label>
+              <textarea class="form-control" rows="3" placeholder="广告模板"
+                name="position_style">{{adPosition.position_style}}</textarea>
+            </div>
+            <div class="form-group">
+              <label>是否关闭</label>
+              <select class="form-control" name="is_open">
+                <option value="0">开启</option>
+                <option value="1">关闭</option>
+              </select>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+    </form>
+    <!-- /.row -->
+  </div> 
+</body>
+</html>

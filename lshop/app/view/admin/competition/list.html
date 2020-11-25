@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>竞赛管理</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">竞赛管理</h3>
+                        <!-- 搜索框 -->
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: auto;">
+                        <table class="table table-head-fixed">
+                            <!-- 表头 -->
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th width="120">类型</th>
+                                    <th>竞赛对象</th>
+                                    <th>竞赛周期</th>
+                                    <th>官网</th>
+                                    <th>主办者</th>
+                                    <th width="120">状态</th>
+                                    <th width="120">管理</th>
+                                </tr>
+                            </thead>
+                            <!-- 添加按钮 -->
+                            <tr>
+                                <td colspan="8" align="left">
+                                    <a href="/admin/competition/toedit" class="btn btn-info" title="添加"><i
+                                            class="far fa-plus-square"></i></a>
+                                </td>
+                            </tr>
+                            <!-- 表格正文 -->
+                            <tbody>
+                                <!-- 好像是导入数据 -->
+                                {% for competition in competitions %}
+                                <tr>
+                                    <!-- 名称 -->
+                                    <td>{{competition.competition_name}}</td>
+                                    <td>
+                                        <select class="form-control" name="competition_type" id="competition_type">
+                                            {% for type in  competitiontypes %}
+                                           {% if type.id==competition.competition_type %}
+                                           <!-- 下拉选择框 -->
+                                            <option value="{{typ.id}}" selected>{{type.name}}</option>
+                                            {% else %}
+                                            <option value="{{typ.id}}">{{type.name}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                        </select>
+                                    </td>
+                                    <!-- 竞赛对象 -->
+                                    <td>{{competition.competition_object}}</td>
+                                    <!-- 周期 -->
+                                    <td>{{competition.competition_period}}</td>
+                                    <!-- 官网 -->
+                                    <td>{{competition.competition_url}}</td>
+                                    <!-- 主办方 -->
+                                    <td>{{competition.competition_org}}</td>
+                                    <td>
+                                        <!-- 另一个下拉选择框 -->
+                                        <select class="form-control" name="status" id="status">
+                                            {% if  competition.status==0  %}
+                                            <option value="0" selected>不启用</option>
+                                            <option value="1">启用</option>
+                                            {% else %}
+                                            <option value="0">不启用</option>
+                                            <option value="1" selected>启用</option>
+                                            {% endif %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <!-- 编辑按钮 -->
+                                            <a href="/admin/competition/toedit?id={{competition.id}}" title="编辑" class="btn-sm btn-default"><i class="far fa-edit"></i></a>
+                                            <!-- 删除按钮 -->
+                                            <a href="/admin/competition/delete?id={{competition.id}}" title="删除" class="btn-sm btn-default" onclick="return confirm('是否真的要删除')"><i
+                                                    class="far fa-minus-square"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+    </div>
+</body>
+
+</html>

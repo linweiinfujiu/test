@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>教师管理</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/public/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">教师管理</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0" style="height: auto;">
+            <table class="table table-head-fixed">
+              <thead>
+                <tr>
+                  <th>姓名</th>
+                  <th>学号</th>
+                  <th>部门</th>
+                  <th>邮件</th>
+                  <th>移动电话</th>
+                  <th>入职时间</th>
+                  <th>职称</th>
+                  <th>状态</th>
+                  <th>管理</th>
+                </tr>
+              </thead>
+              <tr>
+                <td colspan="9" align="left">
+                  <a href="/admin/teacher/toedit" class="btn btn-info" title="添加"><i class="far fa-plus-square" ></i></a>
+                </td>
+              </tr>
+              <tbody>
+                {% for teacher in teachers %}
+                <tr style="height: 35px;line-height: 35px;">
+                  <td>{{teacher.teacher_name}}</td>
+                  <td>{{teacher.teacher_no}}</td>
+                  <td>
+                    <select class="form-control" name="depart_id" id="depart_id">
+                      {% for depart in departs %}
+                      {% if teacher.depart_id==depart.id %}
+                      <option value="{{depart.id}}" selected>{{depart.depart_name}}</option>
+                      {% else %}
+                      <option value="{{depart.id}}">{{depart.depart_name}}</option>
+                      {% endif %}
+                      {% endfor %}
+                  </select> 
+                  </td>
+                  <td>{{teacher.email}}</td>
+                  <td>{{teacher.telephone}}</td>
+                  <td>{{teacher.in_school}}</td>
+                  <td>{{teacher.professional}}</td>
+                  <td>
+                    <select class="form-control" name="status" id="status">
+                      {% for status in statuses %}
+                      {% if  teacher.status==status  %}
+                        <option value="{{status.id}}" selected>{{status.name}}</option>
+                        {% else %}
+                        <option value="{{status.id}}" >{{status.name}}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="/admin/teacher/toedit?id={{teacher.id}}"  title="编辑" class="btn-sm btn-default" ><i class="far fa-edit" ></i></a>
+                      <a href="/admin/teacher/delete?id={{teacher.id}}" title="删除" class="btn-sm btn-default" onclick="return confirm('是否真的要删除')"><i class="far fa-minus-square" ></i></a>
+                      <a href="/admin/teacher/toedit?id={{teacher.id}}"  title="导入数据" class="btn-sm btn-default" ><i class="far fa-star" ></i></a>
+                  </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div> <!-- /.row -->
+  
+    <!-- /.row -->
+  </div> 
+
+
+  <!-- jQuery -->
+  
+</body>
+</html>
